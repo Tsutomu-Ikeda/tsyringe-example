@@ -1,12 +1,11 @@
 import { injectable, inject } from "tsyringe";
-import { IConfig } from "@/interfaces/IConfig.js";
-import { ILogger } from "@/interfaces/ILogger";
+import { DIContainer, InjectionTokens } from "@/container";
 
 @injectable()
 export class MyService {
   constructor(
-    @inject("Logger") private logger: ILogger,
-    @inject("ConfigService") private config: IConfig
+    @inject(InjectionTokens.Logger) private logger: DIContainer[InjectionTokens.Logger],
+    @inject(InjectionTokens.ConfigService) private config: DIContainer[InjectionTokens.ConfigService]
   ) { }
 
   getMessage() {
